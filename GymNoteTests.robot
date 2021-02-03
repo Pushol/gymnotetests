@@ -82,7 +82,7 @@ Check adding, setting active, executing and deleting training plan
         Choose side menu element    Trening
         Check if training page is available
         ${status}=    Run keyword and return status    Verify that training plan has been deleted  testTrainingPlanName
-        Exit For Loop If    '${status}' == 'PASS'
+        Exit For Loop If    '${status}' == 'True'
     END
     Close browser
 
