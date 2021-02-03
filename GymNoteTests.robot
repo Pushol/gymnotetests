@@ -64,13 +64,16 @@ Check adding, setting active, executing and deleting training plan
     Choose side menu element    Trening
     Check if training page is available
     Add new training plan    testTrainingPlanName    testTrainingExercise    testTrainingExercise2
-    Reload Page
-    Choose side menu element    Trening
-    Check if training page is available
-    Verify added training plan    testTrainingPlanName
-    Set training plan active    testTrainingPlanName
-    Choose side menu element    Strona główna
-    Verify active training plan on user page    testTrainingPlanName
+    FOR    ${i}    IN RANGE    30
+        Reload Page
+        Choose side menu element    Trening
+        Check if training page is available
+        Verify added training plan    testTrainingPlanName
+        Set training plan active    testTrainingPlanName
+        Choose side menu element    Strona główna
+        ${status}=    Run keyword and return status    Verify active training plan on user page    testTrainingPlanName
+        Exit For Loop If    '${status}' == 'True'
+    END
     Choose side menu element    Trening
     Check if training page is available
     Add executed training    50    5
