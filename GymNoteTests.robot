@@ -7,6 +7,7 @@ Check gymnote availability
     [Documentation]    This test verifies that main page is available and login form is working.
     Open browser and open gymnote app
     Login with given account
+    Check if training page is available
     Close browser
 
 #Check register form
