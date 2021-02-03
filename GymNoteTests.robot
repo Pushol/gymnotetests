@@ -74,13 +74,16 @@ Check adding, setting active, executing and deleting training plan
     Choose side menu element    Trening
     Check if training page is available
     Add executed training    50    5
-    Choose side menu element    Trening
-    Check if training page is available
-    Delete training plan    testTrainingPlanName
-    Reload Page
-    Choose side menu element    Trening
-    Check if training page is available
-    Verify that training plan has been deleted  testTrainingPlanName
+    FOR    ${i}    IN RANGE    30
+        Choose side menu element    Trening
+        Check if training page is available
+        Delete training plan    testTrainingPlanName
+        Reload Page
+        Choose side menu element    Trening
+        Check if training page is available
+        ${status}=    Run keyword and return status    Verify that training plan has been deleted  testTrainingPlanName
+        Exit For Loop If    '${status}' == 'PASS'
+    END
     Close browser
 
 Check adding new goal
