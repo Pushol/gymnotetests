@@ -199,6 +199,10 @@ Check if training page is available
     [Documentation]    Keyword checks that training subpage is available.
     Wait until keyword succeeds    30    1s    Page Should Contain    Dodaj trening
 
+Check if statistics page is available
+    [Documentation]    Keyword checks that training subpage is available.
+    Wait until keyword succeeds    30    1s    Page Should Contain    Nie jest wymagane podawanie wszystkich pomiarów
+
 Add new goal
     [Arguments]    ${goalName}    ${goalDescription}    ${goalValue}    ${goalBodyPart}    ${goalType}
     [Documentation]    Keyword tries to add new goal in goals subpage.

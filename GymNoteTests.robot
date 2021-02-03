@@ -9,12 +9,12 @@ Check gymnote availability
     Login with given account
     Close browser
 
-Check register form
-    [Documentation]    This test verifies that register form requires all fields to be filled.
-    Open browser and open gymnote app
-    Go to register form
-    Fill and submit register form    matgra0004    passw123    matgra0004@wp.pl
-    Close browser    
+#Check register form
+#    [Documentation]    This test verifies that register form requires all fields to be filled.
+#    Open browser and open gymnote app
+#    Go to register form
+#    Fill and submit register form    matgra0004    passw123    matgra0004@wp.pl
+#    Close browser    
 
 Check if side menu and it subpages are working correctly
     [Documentation]    This test verifies that elements of side menu are redirecting to subpages correctly.
@@ -69,7 +69,7 @@ Check adding, setting active, executing and deleting training plan
     Check if training page is available
     Verify added training plan    testTrainingPlanName
     Set training plan active    testTrainingPlanName
-    Choose side menu element    Strona Główna
+    Choose side menu element    Strona główna
     Verify active training plan on user page    testTrainingPlanName
     Choose side menu element    Trening
     Check if training page is available
