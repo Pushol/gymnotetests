@@ -157,8 +157,8 @@ Delete training plan
     Click Button    xpath://button[text()='${trainingPlanName}']
     Wait Until Element Is Visible    xpath://input[@value='Usuń plan' and @id='${trainingPlanId}']
     Wait until keyword succeeds    30    1s    Click Element    xpath://input[@value='Usuń plan' and @id='${trainingPlanId}']
-    Wait until keyword succeeds    30    1s    Page Should Contain    Usunięto wybrany plan!
     Sleep    5s
+    Wait until keyword succeeds    30    1s    Page Should Contain    Usunięto wybrany plan!
 
 Verify that training plan has been deleted
     [Arguments]    ${trainingPlanName}
