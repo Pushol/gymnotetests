@@ -130,8 +130,8 @@ Set training plan active
     Click Button    xpath://button[text()='${trainingPlanName}']
     Wait Until Element Is Visible    xpath://input[@value='Aktywuj plan' and @id='${trainingPlanId}']
     Wait until keyword succeeds    30    1s    Click Element    xpath://input[@value='Aktywuj plan' and @id='${trainingPlanId}']
+    Sleep    5s
     Wait until keyword succeeds    30    1s    Page Should Contain    Aktywowano nowy plan!
-    Sleep    1s
 
 Add executed training
     [Arguments]    ${firstExerciseWeight}    ${firstExerciseReps}
