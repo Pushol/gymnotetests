@@ -5,7 +5,8 @@ Resource    GymNoteResources.robot
 Check gymnote availability
     [Tags]    critical
     [Documentation]    This test verifies that main page is available and login form is working.
-    [Setup]    Gymnote tests setup
+    Open browser and open gymnote app
+    Login with given account
     [Teardown]    Close browser
 
 Check if side menu and it subpages are working correctly
