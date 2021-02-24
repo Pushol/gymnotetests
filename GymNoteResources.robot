@@ -171,16 +171,22 @@ Verify active training plan on user page
     [Documentation]    This keyword verifies that given training plan is updated od user page.
     Wait until keyword succeeds    30    1s    Wait Until Element Is Visible    xpath://div[@class='trainingContainerContent']/p[text()='${trainingPlanName}']
 
-Check deleting measurements
+Delete measurements
     [Arguments]    ${date}
-    [Documentation]    This keyword verifies that deleting measurements is done properly.
+    [Documentation]    This keyword tries to delete given measurements and verifies that it has been done properly.
     Page Should Contain    ${date}
     Click Element    xpath://div[contains(text(),"${date}")]//span[@class='material-icons']
     Wait until keyword succeeds    30    1s    Page Should Contain    Pomyślnie usunięto wybrane pomiary
+    Sleep    5
+
+Verify that measurements has been deleted
+    [Arguments]    ${date}
+    [Documentation]    This keyword verifies that given measurements has been deleted properly.
+    Page Should Not Contain    ${date}
 
 Choose side menu element
     [Arguments]    ${element}
-    [Documentation]    Keyword chooses element in side menu. Use text visible on the button.
+    [Documentation]    Keyword chooses element from side menu. Use text visible on the button.
     Wait until keyword succeeds    30    1s    Click Element    xpath://a[contains(text(),"${element}")]
 
 Check if settings page is available
@@ -226,3 +232,36 @@ Verify added goal
     [Documentation]    Keyword verifies that given goal is displayed in goals subpage.
     Wait until keyword succeeds    30    1s    Page Should Contain    ${goalName}
     Wait until keyword succeeds    30    1s    Page Should Contain    ${goalDescription}
+
+Verify deleted goal
+    [Arguments]    ${goalName}    ${goalDescription}
+    [Documentation]    Keyword verifies that given goal is displayed in goals subpage.
+    Wait until keyword succeeds    30    1s    Page Should Not Contain    ${goalName}
+    Wait until keyword succeeds    30    1s    Page Should Not Contain    ${goalDescription}
+
+Delete goal
+    [Arguments]    ${goalDescription}
+    [Documentation]    Keyword verifies that given goal is deleted in goals subpage.
+    Wait until keyword succeeds    30    1s    Click Element   xpath=//div[contains(text(),"Testing goal description")]
+
+Verify not achieved goal
+    [Arguments]    ${goalDescription}
+    [Documentation]    Keyword verifies that given goal is displayed in goals subpage.
+    Wait until keyword succeeds    30    1s    Page Should Contain Element    xpath://div[@id="notAchievedGoal"]/div[contains(string(), "${goalDescription}")]
+
+Verify achieved goal
+    [Arguments]    ${goalDescription}
+    [Documentation]    Keyword verifies that given goal is displayed in goals subpage.
+    Wait until keyword succeeds    30    1s    Page Should Contain Element    xpath://div[@id="achievedGoal"]/div[contains(string(), "${goalDescription}")]
+
+Check deleting measurements
+    [Arguments]    ${date}
+    [Documentation]    This keyword verifies that deleting measurements is done properly.
+    Page Should Contain    ${date}
+    Click Element    xpath://div[contains(text(),"${date}")]//span[@class='material-icons']
+    Wait until keyword succeeds    30    1s    Page Should Contain    Pomyślnie usunięto wybrane pomiary
+
+Gymnote tests setup
+    [Documentation]    This keyword opens gymnote app and login with test account.
+    Open browser and open gymnote app
+    Login with given account

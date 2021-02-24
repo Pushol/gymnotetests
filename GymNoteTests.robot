@@ -5,22 +5,13 @@ Resource    GymNoteResources.robot
 Check gymnote availability
     [Tags]    critical
     [Documentation]    This test verifies that main page is available and login form is working.
-    Open browser and open gymnote app
-    Login with given account
+    [Setup]    Gymnote tests setup
     Check if training page is available
-    Close browser
-
-#Check register form
-#    [Documentation]    This test verifies that register form requires all fields to be filled.
-#    Open browser and open gymnote app
-#    Go to register form
-#    Fill and submit register form    matgra0004    passw123    matgra0004@wp.pl
-#    Close browser    
+    [Teardown]    Close browser
 
 Check if side menu and it subpages are working correctly
     [Documentation]    This test verifies that elements of side menu are redirecting to subpages correctly.
-    Open browser and open gymnote app
-    Login with given account    
+    [Setup]    Gymnote tests setup 
     Choose side menu element    Ustawienia
     Check if settings page is available
     Choose side menu element    Kalkulator Deficytu
@@ -32,22 +23,23 @@ Check if side menu and it subpages are working correctly
     Choose side menu element    Statystyki
     Check if statistics page is available
     Choose side menu element    Strona główna
-    Close browser
+    [Teardown]    Close browser
 
-Check adding measurements
+Check adding and deleting measurements
     [Documentation]    This test verifies that adding new measurements works.
-    Open browser and open gymnote app
-    Login with given account
+    [Setup]    Gymnote tests setup
     Choose side menu element  Statystyki
     Fill and submit measurements form    01/01/2077    100    95    90    85    80    75    70    65    60
     Verify added measurements    2077-01-01    100    95    90    85    80    75    70    65    60
-    Check deleting measurements    2077-01-01
-    Close browser
+    Delete measurements    2077-01-01
+    Reload page
+    Choose side menu element  Statystyki
+    Verify that measurements has been deleted    2077-01-01
+    [Teardown]    Close browser
 
 Check latest updated statistics on user page
     [Documentation]    This test verifies that statistics on user page are updated correctly.
-    Open browser and open gymnote app
-    Login with given account
+    [Setup]    Gymnote tests setup
     Choose side menu element  Statystyki
     Fill and submit measurements form    01/01/2077    100    95    90    85    80    75    70    65    60
     Verify added measurements    2077-01-01    100    95    90    85    80    75    70    65    60
@@ -55,13 +47,12 @@ Check latest updated statistics on user page
     Verify measurements update on user page    01-01-2077    100    95    90    85    80    75    70    65    60
     Choose side menu element  Statystyki
     Check deleting measurements    2077-01-01
-    Close browser
+    [Teardown]    Close browser
 
 Check adding, setting active, executing and deleting training plan
     [Tags]    test
     [Documentation]    This test verifies that adding new training plan, setting it active, executing new training and deleting training plan works.
-    Open browser and open gymnote app
-    Login with given account
+    [Setup]    Gymnote tests setup
     Choose side menu element    Trening
     Check if training page is available
     Add new training plan    testTrainingPlanName    testTrainingExercise    testTrainingExercise2
@@ -88,17 +79,50 @@ Check adding, setting active, executing and deleting training plan
         ${status}=    Run keyword and return status    Verify that training plan has been deleted  testTrainingPlanName
         Exit For Loop If    '${status}' == 'True'
     END
-    Close browser
+    [Teardown]    Close browser
 
-Check adding new goal
+Check adding and deleting new goal
     [Tags]    test
-    [Documentation]    This test tries to add a new goal and verify that it is being displayed correctly in goals subpage.
-    Open browser and open gymnote app
-    Login with given account
+    [Documentation]    This test tries to add a new goal and verify that it is being displayed correctly in goals subpage then tries to delete it and verifies it.
+    [Setup]    Gymnote tests setup
     Choose side menu element    Cele
     Check if goals page is available
-    Add new goal    Testing goal    Testing goal description    120    Plecy    Mniejsze/Równe
+    Add new goal    Testing goal    Testing goal description    130    Waga    Mniejsze/Równe
+    Choose side menu element    Cele
+    Check if goals page is available
+    Verify achieved goal    Testing goal description
+    Verify added goal    Testing goal    Testing goal description
+    Delete goal  Testing goal description
+    Choose side menu element    Cele
+    Check if goals page is available
+    Verify deleted goal    Testing goal    Testing goal description
+    [Teardown]    Close browser
+
+Check achieving goal
+    [Tags]    test
+    [Documentation]    This test verifies that achieving goals works as intended.
+    [Setup]    Gymnote tests setup
+    Choose side menu element  Statystyki
+    Fill and submit measurements form    01/01/2077    100    95    90    85    80    75    70    65    60
+    Verify added measurements    2077-01-01    100    95    90    85    80    75    70    65    60
+    Choose side menu element    Cele
+    Check if goals page is available
+    Add new goal    Testing goal    Testing goal description    95    Waga    Mniejsze/Równe
     Choose side menu element    Cele
     Check if goals page is available
     Verify added goal    Testing goal    Testing goal description
-    Close browser
+    Verify not achieved goal  Testing goal description
+    Choose side menu element  Statystyki
+    Fill and submit measurements form    02/01/2077    90    95    90    85    80    75    70    65    60
+    Verify added measurements    2077-01-02    90    95    90    85    80    75    70    65    60
+    Choose side menu element    Cele
+    Check if goals page is available
+    Verify achieved goal  Testing goal description
+    Delete goal  Testing goal description
+    Choose side menu element    Cele
+    Check if goals page is available
+    Verify deleted goal    Testing goal    Testing goal description
+    Choose side menu element  Statystyki
+    Check deleting measurements    2077-01-01
+    Check deleting measurements    2077-01-02
+    [Teardown]    Close browser
