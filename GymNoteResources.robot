@@ -44,6 +44,7 @@ Login with given account
     [Documentation]    This keyword tries to login with given account into gymnote app. If no arguments are given, keyword will use test account.
     Fill login form  ${login}    ${password}
     Click Button    xpath://input[@value="Zaloguj się"]
+    Wait until keyword succeeds    30    1s    Page Should Contain    Masz już konto?
 
 Fill and submit measurements form
     [Arguments]    ${date}    ${weight}    ${forearm}    ${arm}    ${shoulders}    ${chest}    ${waist}    ${glutes}    ${thigh}    ${calf}
