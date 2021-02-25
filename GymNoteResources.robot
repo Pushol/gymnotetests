@@ -12,27 +12,6 @@ Open browser and open gymnote app
     Maximize Browser Window
     Wait until keyword succeeds    30    1s    Page Should Contain    Co oferujemy?
 
-Go to register form
-    [Documentation]    This keyword goes from starting page to register form.
-    Click Element    xpath://a[contains(text(),"Zarejestruj się")]
-    Wait until keyword succeeds    30    1s    Page Should Contain    Masz już konto?
-
-Fill register form
-    [Arguments]    ${login}    ${password}    ${email}
-    [Documentation]    This keyword fills register with given arguments.
-    Input Text    xpath://input[@id="username"]    ${login}
-    Input Text    xpath://input[@id="email"]    ${email}
-    Input Password    xpath://input[@id="password"]    ${password}
-    Input Password    xpath://input[@id="passwordRetry"]    ${password}
-
-Fill and submit register form
-    [Arguments]    ${login}    ${password}    ${email}
-    [Documentation]    This keyword fills register with given arguments and sends form.
-    Fill register form  ${login}    ${password}    ${email}
-    Click Button    xpath://input[@value="Zarejestruj się"]
-    Wait until keyword succeeds    30    1s    Page Should Contain    Wypełnij to pole
-    Wait until keyword succeeds    30    1s    Page Should Contain    Błąd rejestracji
-
 Fill login form
     [Arguments]    ${login}    ${password}
     [Documentation]    This keyword fills login form.
@@ -44,7 +23,6 @@ Login with given account
     [Documentation]    This keyword tries to login with given account into gymnote app. If no arguments are given, keyword will use test account.
     Fill login form  ${login}    ${password}
     Click Button    xpath://input[@value="Zaloguj się"]
-    Wait until keyword succeeds    30    1s    Page Should Contain    Strona główna
 
 Fill and submit measurements form
     [Arguments]    ${date}    ${weight}    ${forearm}    ${arm}    ${shoulders}    ${chest}    ${waist}    ${glutes}    ${thigh}    ${calf}
@@ -201,6 +179,10 @@ Check if deficit calculator page is available
 Check if goals page is available
     [Documentation]    Keyword checks that goals subpage is available.
     Wait until keyword succeeds    30    1s    Page Should Contain    Wyświetl cele
+
+Check if main page is available
+    [Documentation]    Keyword checks that main page is available.
+    Wait until keyword succeeds    30    1s    Page Should Contain    Ostatnie pomiary
 
 Check if training page is available
     [Documentation]    Keyword checks that training subpage is available.

@@ -1,16 +1,19 @@
 *** Settings ***
 Library    SeleniumLibrary
 Resource    GymNoteResources.robot
+
 *** Test Cases ***
 Check gymnote availability
     [Tags]    critical
     [Documentation]    This test verifies that main page is available and login form is working.
     Open browser and open gymnote app
     Login with given account
+    Check if main page is available
     [Teardown]    Close browser
 
 Check if side menu and it subpages are working correctly
     [Documentation]    This test verifies that elements of side menu are redirecting to subpages correctly.
+    [Tags]    critical
     [Setup]    Gymnote tests setup 
     Choose side menu element    Ustawienia
     Check if settings page is available
@@ -27,6 +30,7 @@ Check if side menu and it subpages are working correctly
 
 Check adding and deleting measurements
     [Documentation]    This test verifies that adding new measurements works.
+    [Tags]    critical
     [Setup]    Gymnote tests setup
     Choose side menu element  Statystyki
     Fill and submit measurements form    01/01/2077    100    95    90    85    80    75    70    65    60
@@ -39,6 +43,7 @@ Check adding and deleting measurements
 
 Check latest updated statistics on user page
     [Documentation]    This test verifies that statistics on user page are updated correctly.
+    [Tags]    additional
     [Setup]    Gymnote tests setup
     Choose side menu element  Statystyki
     Fill and submit measurements form    01/01/2077    100    95    90    85    80    75    70    65    60
@@ -50,8 +55,8 @@ Check latest updated statistics on user page
     [Teardown]    Close browser
 
 Check adding, setting active, executing and deleting training plan
-    [Tags]    test
     [Documentation]    This test verifies that adding new training plan, setting it active, executing new training and deleting training plan works.
+    [Tags]    critical
     [Setup]    Gymnote tests setup
     Choose side menu element    Trening
     Check if training page is available
@@ -82,8 +87,8 @@ Check adding, setting active, executing and deleting training plan
     [Teardown]    Close browser
 
 Check adding and deleting new goal
-    [Tags]    test
     [Documentation]    This test tries to add a new goal and verify that it is being displayed correctly in goals subpage then tries to delete it and verifies it.
+    [Tags]    additional
     [Setup]    Gymnote tests setup
     Choose side menu element    Cele
     Check if goals page is available
@@ -99,8 +104,8 @@ Check adding and deleting new goal
     [Teardown]    Close browser
 
 Check achieving goal
-    [Tags]    test
     [Documentation]    This test verifies that achieving goals works as intended.
+    [Tags]    additional
     [Setup]    Gymnote tests setup
     Choose side menu element  Statystyki
     Fill and submit measurements form    01/01/2077    100    95    90    85    80    75    70    65    60
