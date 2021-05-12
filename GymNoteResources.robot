@@ -2,7 +2,7 @@
 Library    SeleniumLibrary
 
 *** Variables ***
-${siteUrl}    http://localhost:8080/
+${siteUrl}    http://zpo-silownia.herokuapp.com/
 ${browser}    Chrome
 
 *** Keywords ***
